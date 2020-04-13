@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <title>COVID-19 estimator</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    /* .body-wrp{
+      min-height: 100vh;
+    } */
+
+    .header-wrp{
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background-color: #b924c4;
+      color: white;
+      z-index: 999999;
+    }
+    .header{
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin: 0 15px;
+    }
+
+    .header .title-name{
+      font-size: 16px;
+      /* color: #cc8bc3; */
+    }
+    .header .icon-wrp{
+      display: inline-block;
+      max-width:50px;
+    }
+    .icon-wrp img{
+      width: 100%;
+    }
+    .content-wrp{
+      margin: 15px;
+      padding-top: 47px;
+    }
+
+    .content{
+      width: 50%;
+      margin: auto;
+    }
+
+    .random-fact-wrp{
+      margin-left: -15px;
+      margin-right: -15px;
+      padding: 15px;
+      background-color: #8f1e97;
+      color: white;
+      min-height: 210px;
+      max-height: 210px;
+      position: relative;
+    }
+.random-fact-wrp h1{
+  font-size: 1em;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+.random-fact .fact{
+  font-size: smaller;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: #b924c494;
+  line-height: 1.3;
+}
+.random-fact .fact-author{
+  display: block;
+  text-align: right;
+  color: white;
+  text-decoration: underline;
+  font-size: 20px;
+  text-transform: capitalize;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+    .estimator{
+      padding: 15px 0;
+      margin-bottom: 50px;
+    }
+
+    .input .btn {
+      margin: 15px 0;
+      background-color: #8f1e97;
+      color: white;
+    }
+
+    .input-group-text {
+    background-color: #8f1e97;
+    border: 1px solid #ced4da;
+    color: white;
+}
+input::placeholder,select{
+  color: #cc8bc3 !important;
+}
+input:focus,select:focus{
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #cc8bc3 !important;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  min-width: 100%;
+  padding: 10px;
+  background-color: #8f1e97;
+  color: white;
+  z-index: 999999;
+}
+.footer a{
+  text-decoration: none;
+  color: #8f1e97;
+  display: inline-block;
+  background-color: white;
+  padding: 0 10px;
+  border-radius: 6px;
+}
+.footer a:hover{
+  text-decoration: underline;
+}
+
+.footer p{
+  margin: 0;
+}
+
+
+@media screen and (max-width: 767px) {
+  .content {
+    width: 100%;
+    }
+}
+  </style>
+</head>
+<body>
+  <div class="body-wrp">
+    <header class="header-wrp">
+      <h1 class="header">
+        <span class="title-name" title="covid-19 estimator">COVID-19 ESTIMATOR</span>
+        <span class="icon-wrp">
+          <img src="./assets/covid-19.svg" alt="covid-19 icon">
+        </span>
+      </h1>
+    </header>
+    <div class="content-wrp">
+      <div class="content">
+        <div class="random-fact-wrp">
+          <h1 title="covid-19 facts">COVID-19 FACTS</h1>
+          <div id="random-fact" class="random-fact" title="the fact">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis omnis excepturi saepe! Porro quo sapiente fugit totam, 
+            facere molestias quia eius eaque dicta in, quibusdam rem minus dolorum officia? Nesciunt?
+          </div>
+        </div>
+        <div class="estimator-wrp">
+          <div class="estimator">
+            <form action="#" method="post">
+              <div class="form-group">
+                <!-- <label for="name">Name(Required)</label> -->
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-user-alt">@</i></div>
+                    </div>
+                <input type="number" min="1" class="form-control" data-population id="name" name="population" placeholder="population"  required title="population input">
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="name">Name(Required)</label> -->
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-user-alt">@</i></div>
+                    </div>
+                <input type="number" min="1" class="form-control" id="name" data-time-to-elapse name="timeToElapse" placeholder="Time To Elapse"  required title="TIme to elapse input">
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="name">Name(Required)</label> -->
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-user-alt">@</i></div>
+                    </div>
+                <input type="number" min="1"  data-reported-cases class="form-control" id="reportedCases" name="reportedCases" placeholder="Number of reported Cases"  required title="Number of reported Cases input">
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="name">Name(Required)</label> -->
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-user-alt">@</i></div>
+                    </div>
+                <input type="number" data-total-hospital-beds class="form-control" id="totalHospitalBeds" name="totalHospitalBeds" placeholder="Total Hospital Beds" min="1"  required title="Total Hospital Beds input">
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="name">Name(Required)</!-->
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-user-alt">@</i></div>
+                    </div>
+                    <select class="form-control" data-period-type name="periodType" title="period Type select input">
+                      <option value="days">Days</option>
+                      <option value="weeks">Weeks</option>
+                      <option value="months">Months</option>
+                    </select>
+                </div>
+              </div>
+              <div class="input-wrp">
+                <div class="input">
+                <button data-go-
+                estimate class="btn btn-block" title="submit button">Estmate</button></div></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <p>Made with <i class="fa fa-heart"></i> by <a href="https://haastrupea.github.io">Haastrup Elijah</a></p>
+    </footer>
+  </div>
+  <script>
+    const quotes=[
+    {"fact":"On average, 65% of hospital beds are already occupied by patients and many hospitals usually are at 90% or 95% capacity.",
+      "source":"unknown"},
+      {"fact":"Yes, the virus only kills a small percentage of those afflicted. Yes, the flu kills 10s of thousands of people annually. Yes, 80% of people will experience lightweight symptoms with COVID19. Yes the mortality rate of COVID19 is relatively low (1–2%). All of this true, but is immaterial. They are the wrong numbers to focus on",
+      "source":"Jason S Warner",
+    "source-Url":"https://medium.com/@Jason_Scott_Warner"},
+    {"fact":"there are likely up to 50x more people infected than known reported cases",
+      "source":"Harvard Medical School / Massachusetts General Hospital",
+    "source-Url":"https://l.facebook.com/l.php?u=https%3A%2F%2Fexternalmediasite.partners.org%2FMediasite%2FPlay%2F53a4003de5ab4b4da5902f078744435a1d%3Ffbclid%3DIwAR3-HS64-QB9AEbJdxV7ovcCB6nDXGgOkEawgTOYtQx-b720cIKVaJVPq-k&h=AT0cFGJ2kVgvRvBxtnR5jEpK-oXjP_j6ftEMmJsss_XdAtuIcNv__ZI5DUnIBnDk_z6p5vbToAEW842x6PI8kDF1xTkSpq1-i3F8V-9JG1gCHFA4nzJFXdQp-RnPIDM3wsZSQre1yNTOcBphYNbM1i1CuwG7"}
+  ];
+
+  const renderQuote = (quote) => {
+  const quoteElm=document.getElementById("random-fact");
+  const docFrag=document.createDocumentFragment();
+
+  const fact=document.createElement("p");
+          fact.classList.add("fact");
+          fact.textContent=quote.fact;
+          docFrag.appendChild(fact);
+
+  const author=document.createElement("a");
+        author.classList.add('fact-author');
+        author.textContent=quote.source;
+          if(quote['source-Url']!==undefined){
+            author.href=quote['source-Url'];
+          }else{
+            author.href="#";
+          }
+        docFrag.appendChild(author);
+
+        quoteElm.innerHTML="";
+        quoteElm.appendChild(docFrag) 
+}
+
+let count=0;
+renderQuote(quotes[count]);
+count++;
+setInterval(()=>{
+// setTimeout(()=>{
+renderQuote(quotes[count]);
+count++;
+console.log(count);
+
+if(count>=quotes.length){
+  count=0;
+}
+},10000);
+
+
+  </script>
+</body>
+</html>
